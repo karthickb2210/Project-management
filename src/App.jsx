@@ -10,7 +10,7 @@ function App() {
     projects:[]
   })
   function handleaddproject(){
-    setProject(prev =>{
+    setProject((prev) =>{
       return{
         ...prev,
         selectedprojectId :null,
@@ -38,6 +38,7 @@ function App() {
   }})
   }
   function handleSelectedProject(id){
+    console.log(id)
     setProject((prev) =>{
       return{
         ...prev,
@@ -45,10 +46,10 @@ function App() {
       }
     })
   }
-  const selectedProject = project.projects.find(project=>project.id===project.selectedprojectId)
+  const selectedProject = project.projects.find(pro=>pro.id===project.selectedprojectId)
   console.log(selectedProject)
 
-  let content = <SelectedProject project={selectedProject}/>
+  let content = <SelectedProject  project={selectedProject}/>
   if(project.selectedprojectId===null){
     content = <Newproject onAdd={handlesideadd} onCancel={handleCancel}/>
   }else if(project.selectedprojectId===undefined){
@@ -57,7 +58,8 @@ function App() {
   return (
     <>
     <main className="h-screen my-8 flex gap-8">
-      <Sidebar onStartAddProject={handleaddproject} projects={project.projects} onSelectProject={handleSelectedProject} />
+      <Sidebar onStartAddProject={handleaddproject} 
+       projects={project.projects} onSelectProject={handleSelectedProject} />
       {content}
     </main>
     </>

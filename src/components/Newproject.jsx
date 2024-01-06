@@ -10,7 +10,7 @@ function Newproject({onAdd,onCancel}) {
         const enteredtitle = title.current.value;
         const entereddescription = description.current.value;
         const enteredduedate = duedate.current.value;
-
+        console.log(enteredtitle)
         if(enteredtitle.trim() ==='' || entereddescription.trim()==='' || enteredduedate.trim()===''){
             modal.current.open();
             return;

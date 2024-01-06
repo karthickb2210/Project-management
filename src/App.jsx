@@ -46,10 +46,22 @@ function App() {
       }
     })
   }
+  function handleDelete(){
+    console.log("deleted")
+    setProject((prev) =>{
+      console.log(prev)
+      return{
+        ...prev,
+        selectedprojectId :null,
+        projects : prev.projects.filter((item)=>item.id != prev.selectedprojectId)
+      }
+    })
+    
+  }
   const selectedProject = project.projects.find(pro=>pro.id===project.selectedprojectId)
-  console.log(selectedProject)
+ // console.log(selectedProject)
 
-  let content = <SelectedProject  project={selectedProject}/>
+  let content = <SelectedProject  project={selectedProject} deleted={handleDelete}/>
   if(project.selectedprojectId===null){
     content = <Newproject onAdd={handlesideadd} onCancel={handleCancel}/>
   }else if(project.selectedprojectId===undefined){
